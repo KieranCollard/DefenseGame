@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 23868642768705238}
   - component: {fileID: 114042072091735954}
   - component: {fileID: 136095990350305314}
-  m_Layer: 0
+  - component: {fileID: 54118824059390952}
+  m_Layer: 9
   m_Name: DropBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,6 +86,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267736975718332}
   m_Mesh: {fileID: 4300000, guid: dd38f665ad77be340856868cb8cecb1f, type: 3}
+--- !u!54 &54118824059390952
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1267736975718332}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 122
+  m_CollisionDetection: 0
 --- !u!114 &114042072091735954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,10 +113,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointScore: 0
-  speed: 10
+  speed: 5
   bulletReference: {fileID: 4990564456499064, guid: 642d32a06e937fc46949090d424f085c,
     type: 2}
-  groundReference: {fileID: 0}
+  groundReference: {fileID: 1226866382986502, guid: 0104e37910ca8cc48bf6becc4e7e92f5,
+    type: 2}
   screenPaddingSides: 0
   screenPaddingTop: 0
 --- !u!136 &136095990350305314

@@ -8,10 +8,12 @@ public class MissileBaseObject : MonoBehaviour {
     public float speed = 1;
 
     public Transform bulletReference;
-    public Transform groundReference;
+    public GameObject groundReference;
 
-	// Use this for initialization
-	void Start () {
+
+    protected Rigidbody myRigidBody;
+    // Use this for initialization
+    void Start () {
 		if(bulletReference == null)
         {
             Debug.LogAssertion("Missile object did not correctly have the bullet reference " + this.gameObject.name);

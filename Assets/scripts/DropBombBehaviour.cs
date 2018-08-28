@@ -38,12 +38,16 @@ public class DropBombBehaviour : MissileBaseObject {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == bulletReference)
+        //8 being our defined bullet layer
+        if(collision.gameObject.layer == 8)
         {
+            Debug.Log("Shot from sky");
             ShotFromSky();
         }
-        else if(gameObject == groundReference)
+        //10 being our defined ground layer
+        else if(collision.gameObject.layer == 10)
         {
+            Debug.Log("Hit the gound");
             MadeItToGround();
         }
     }
