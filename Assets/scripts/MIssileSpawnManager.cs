@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MIssileSpawnManager : MonoBehaviour {
+public class MissileSpawnManager : MonoBehaviour {
 
     //interval to spawn the missiles at 
     public float spawnInterval = 1;
     //fastest that our interval should get
 
-    public float spawnIntervalMinimum = 0.25f;
-    //how often the spaw nreate should increase
-    public float speedIncreaseInterval = 1;
+    public float spawnIntervalMinimum = 1.0f;
+    //how often the spawn rate should increase
+    public float spawnSpeedIncreaseInterval = 1;
     //seconds to increase spawn rate by at each interval
-    public float speedIncreaseSeconds = 1;
+    public float spawnSpeedIncreaseSeconds = 1;
 
     public bool spawnActive = true;
     public List<GameObject> knownMissileTypes;
@@ -52,8 +52,8 @@ public class MIssileSpawnManager : MonoBehaviour {
     {
         while(spawnActive)
         {
-            yield return new WaitForSeconds(speedIncreaseInterval);
-            spawnInterval -= speedIncreaseSeconds;
+            yield return new WaitForSeconds(spawnSpeedIncreaseInterval);
+            spawnInterval -= spawnSpeedIncreaseSeconds;
             if (spawnInterval <= spawnIntervalMinimum)
             {
                 spawnInterval = spawnIntervalMinimum;

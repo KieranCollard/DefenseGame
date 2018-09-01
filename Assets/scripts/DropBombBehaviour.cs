@@ -41,13 +41,11 @@ public class DropBombBehaviour : MissileBaseObject {
         //8 being our defined bullet layer
         if(collision.gameObject.layer == 8)
         {
-            Debug.Log("Shot from sky");
             ShotFromSky();
         }
         //10 being our defined ground layer
         else if(collision.gameObject.layer == 10)
         {
-            Debug.Log("Hit the gound");
             MadeItToGround();
         }
     }

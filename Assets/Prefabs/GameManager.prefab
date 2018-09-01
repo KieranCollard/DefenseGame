@@ -9,52 +9,58 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1238466713059732}
+  m_RootGameObject: {fileID: 1317472969092082}
   m_IsPrefabAsset: 1
---- !u!1 &1238466713059732
+--- !u!1 &1317472969092082
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4753308423097316}
-  - component: {fileID: 114595236085644674}
+  - component: {fileID: 4318163235137382}
+  - component: {fileID: 114735690982635542}
+  - component: {fileID: 114006035491451508}
   m_Layer: 0
-  m_Name: MissileSpawnManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4753308423097316
+--- !u!4 &4318163235137382
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238466713059732}
+  m_GameObject: {fileID: 1317472969092082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35109574, y: 15.049024, z: 0}
+  m_LocalPosition: {x: 3.0429306, y: 2.4242077, z: 6.476654}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114595236085644674
+--- !u!114 &114006035491451508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1238466713059732}
+  m_GameObject: {fileID: 1317472969092082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32ce7ba3f52f91745a9db97f96ce5d6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3544efffcac18c54980a3b3be311e0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 5
-  spawnIntervalMinimum: 0.5
-  spawnSpeedIncreaseInterval: 10
-  spawnSpeedIncreaseSeconds: 0.02
-  spawnActive: 1
-  knownMissileTypes:
-  - {fileID: 1267736975718332, guid: aa75dfd7fe943ad46a4a71d90a265e34, type: 2}
+  startingLives: 3
+--- !u!114 &114735690982635542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317472969092082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3682335930945bc4097fb662d62824ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

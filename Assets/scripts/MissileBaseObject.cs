@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MissileBaseObject : MonoBehaviour {
 
-    public float pointScore = 0;
+    public int pointScore = 0;
     public float speed = 1;
 
     public Transform bulletReference;
@@ -33,12 +33,12 @@ public class MissileBaseObject : MonoBehaviour {
     public void ShotFromSky()
     {
         Destroy(this.gameObject);
-        //TODO add points via event
+        PointsManager.AddScoreEvent(pointScore);
     }
 
     public void MadeItToGround()
     {
         Destroy(this.gameObject);
-        //TODO subtract lives via event
+        LivesManager.RemoveLifeEvent();
     }
 }

@@ -49,4 +49,10 @@ public class Bullet : MonoBehaviour {
             yield return new WaitForSeconds(1.0f);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(this.gameObject);
+        //TODO play sounds or particles 
+    }
 }
