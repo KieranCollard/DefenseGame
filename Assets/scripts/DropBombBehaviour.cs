@@ -9,13 +9,13 @@ public class DropBombBehaviour : MissileBaseObject {
     //amount 'above' screen to spawn
     public float screenPaddingTop = 0;
 
-    // Use this for initialization
-    void Start () {
-        //confirm we have a collider
-        if (this.GetComponent<Collider>() == null)
-        {
-            Debug.LogAssertion("The DropBomb prefab did not have a collider");
-        }
+    protected void FallingMove()
+    {
+        //just travel forward blindly
+        this.transform.Translate(-this.transform.up * speed * Time.deltaTime);
+    }
+    protected void SelectSpawnPoint()
+    {
         //spawn within bounds of screen  plusor minus padding
         float xMin = screenPaddingSides;
         float xMax = Screen.width - screenPaddingSides;
@@ -27,13 +27,22 @@ public class DropBombBehaviour : MissileBaseObject {
         worldPosition.z = 0;
 
         this.transform.position = worldPosition;
+    }
 
+    // Use this for initialization
+    void Start () {
+        //confirm we have a collider
+        if (this.GetComponent<Collider>() == null)
+        {
+            Debug.LogAssertion("The DropBomb prefab did not have a collider");
+        }
+
+        SelectSpawnPoint();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //just travel forward blindly
-        this.transform.Translate(-this.transform.up * speed * Time.deltaTime);
+        FallingMove();
 	}
 
     private void OnCollisionEnter(Collision collision)

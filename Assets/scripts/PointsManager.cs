@@ -30,7 +30,8 @@ public class PointsManager : MonoBehaviour {
     public void AddScore(int additionalValue)
     {
         currentScore += additionalValue;
-        OnScoreAdded(currentScore);
+        if(OnScoreAdded != null)
+            OnScoreAdded(currentScore);
     }
 
     public void SubtractScore(int subtractiveValue)

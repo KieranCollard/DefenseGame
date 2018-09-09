@@ -12,7 +12,14 @@ public class LivesDisplay : MonoBehaviour {
     {
         myText.text = precedingText + currentLives.ToString();
     }
-	// Use this for initialization
+
+    void OnEnable()
+    {
+        LivesManager.OnLifeAdded += UpdateLives;
+        LivesManager.OnLifeSubtracted += UpdateLives;
+
+    }
+
 	void Start () {
         myText = GetComponent<Text>();
         if(myText == null)
@@ -20,8 +27,6 @@ public class LivesDisplay : MonoBehaviour {
             Debug.LogAssertion("The Lives display script must be attached to a UI Text object");
         }
 
-        LivesManager.OnLifeAdded += UpdateLives;
-        LivesManager.OnLifeSubtracted += UpdateLives;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +34,11 @@ public class LivesDisplay : MonoBehaviour {
 		
 	}
 
+    private void OnDisable()
+    {
+        LivesManager.OnLifeAdded -= UpdateLives;
+        LivesManager.OnLifeSubtracted -= UpdateLives;
+    }
     private void OnDestroy()
     {
         LivesManager.OnLifeAdded -= UpdateLives;

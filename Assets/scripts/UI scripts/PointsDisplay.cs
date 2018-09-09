@@ -11,18 +11,26 @@ public class PointsDisplay : MonoBehaviour {
     {
         myText.text = precedingText + currentScore.ToString();
     }
-	// Use this for initialization
-	void Start () {
+
+    private void OnEnable()
+    {
+        PointsManager.OnScoreAdded += UpdateScore;
+        PointsManager.OnScoreSubtracted += UpdateScore;
+    }
+    // Use this for initialization
+    void Start () {
         myText = GetComponent<Text>();
         if(myText == null)
         {
             Debug.LogAssertion("The Points display script must be attached to a UI text object");
         }
-
-        PointsManager.OnScoreAdded += UpdateScore;
-        PointsManager.OnScoreSubtracted += UpdateScore;
 	}
 
+    private void OnDisable()
+    {
+        PointsManager.OnScoreSubtracted -= UpdateScore;
+        PointsManager.OnScoreAdded -= UpdateScore;
+    }
 
     private void OnDestroy()
     {

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class LivesManager : MonoBehaviour {
 
@@ -28,7 +30,8 @@ public class LivesManager : MonoBehaviour {
     public void AddLife()
     {
         currentLives += 1;
-        OnLifeAdded(currentLives);
+        if(OnLifeAdded != null)
+            OnLifeAdded(currentLives);
     }
 
     public void SubtractLife()
@@ -37,17 +40,22 @@ public class LivesManager : MonoBehaviour {
 
         if(currentLives <= 0)
         {
-            ///TODO signal game over
+            ///TODO pass current score into next scene
+            ///possibly write to file?
+            SceneManager.LoadScene("PostGame");
         }
-        OnLifeSubtracted(currentLives);
+        if(OnLifeAdded != null)
+            OnLifeSubtracted(currentLives);
     }
 	// Use this for initialization
 	void Start () {
         currentLives = startingLives;
-        OnLifeAdded(currentLives);
 
         AddLifeEvent += AddLife;
         RemoveLifeEvent += SubtractLife;
+
+        if(OnLifeAdded != null)
+            OnLifeAdded(currentLives);
     }
 
 

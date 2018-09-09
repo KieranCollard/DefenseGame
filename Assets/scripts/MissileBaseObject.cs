@@ -39,6 +39,7 @@ public class MissileBaseObject : MonoBehaviour {
     public void MadeItToGround()
     {
         Destroy(this.gameObject);
-        LivesManager.RemoveLifeEvent();
+        if (LivesManager.RemoveLifeEvent != null)
+            LivesManager.RemoveLifeEvent();
     }
 }

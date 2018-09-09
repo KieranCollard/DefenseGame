@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 222776859039782632}
   - component: {fileID: 114057122692446526}
   - component: {fileID: 114444595202558720}
-  - component: {fileID: 114747794482150864}
   m_Layer: 5
   m_Name: LivesDisplay
   m_TagString: Untagged
@@ -172,18 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   precedingText: 'Score: '
---- !u!114 &114747794482150864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1628089307868738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b731f456ddf03428b3f64e505805c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  precedingText: 'Lives: '
 --- !u!114 &114922144834354616
 MonoBehaviour:
   m_ObjectHideFlags: 1
