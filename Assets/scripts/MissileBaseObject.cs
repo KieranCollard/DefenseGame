@@ -42,4 +42,18 @@ public class MissileBaseObject : MonoBehaviour {
         if (LivesManager.RemoveLifeEvent != null)
             LivesManager.RemoveLifeEvent();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //8 being our defined bullet layer
+        if (collision.gameObject.layer == 8)
+        {
+            ShotFromSky();
+        }
+        //10 being our defined ground layer
+        else if (collision.gameObject.layer == 10)
+        {
+            MadeItToGround();
+        }
+    }
 }

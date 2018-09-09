@@ -59,3 +59,4 @@ MonoBehaviour:
   knownMissileTypes:
   - {fileID: 1267736975718332, guid: aa75dfd7fe943ad46a4a71d90a265e34, type: 2}
   - {fileID: 1708641165655092, guid: 80a09e47869632241b52a3a4cc36593e, type: 2}
+  - {fileID: 1882157671811074, guid: acaf9afe5ae6e134a8067f109596a1be, type: 2}
