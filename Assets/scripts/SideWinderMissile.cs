@@ -17,6 +17,13 @@ public class SideWinderMissile : MissileBaseObject {
 
 
         }
+
+        ParticleSystem fireTrail = this.GetComponent<ParticleSystem>();
+        if(fireTrail != null)
+        {
+            //play onyl the fire trail. Not the explosion effect
+            fireTrail.Play(false);
+        }
 	}
 	
 	// Update is called once per frame
@@ -29,8 +36,6 @@ public class SideWinderMissile : MissileBaseObject {
 
         //rotate us 'forwards'
         this.transform.up = direction.normalized;
-
-        Debug.Log(this.transform.forward);
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
 
     }

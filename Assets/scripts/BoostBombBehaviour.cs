@@ -10,7 +10,7 @@ public class BoostBombBehaviour : DropBombBehaviour {
     //amount to increase speed by
     public float boostMultiplier = 1.5f;
 
-    ParticleSystem particles = null;
+    ParticleSystem boostParticles = null;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,8 +19,8 @@ public class BoostBombBehaviour : DropBombBehaviour {
             Debug.LogAssertion("The BostBombBehaviour did not have a collider");
         }
 
-        particles = this.GetComponent<ParticleSystem>();
-        if (particles == null)
+        boostParticles = this.GetComponent<ParticleSystem>();
+        if (boostParticles == null)
         {
             Debug.LogAssertion("The boost missile did not have a particle system attached");
         }
@@ -34,7 +34,7 @@ public class BoostBombBehaviour : DropBombBehaviour {
         yield return new WaitForSeconds(timeBeforeBoost);
 
         speed *= boostMultiplier;
-        particles.Play();
+        boostParticles.Play(false);
     }
 	// Update is called once per frame
 	void Update () {

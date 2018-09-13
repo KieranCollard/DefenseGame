@@ -10,6 +10,8 @@ public class MissileBaseObject : MonoBehaviour {
     public Transform bulletReference;
     public GameObject groundReference;
 
+    public GameObject ExplosionParticles = null;
+    ParticleSystem particles = null;
 
     protected Rigidbody myRigidBody;
     // Use this for initialization
@@ -23,6 +25,17 @@ public class MissileBaseObject : MonoBehaviour {
         {
             Debug.LogAssertion("Missile object did not have the ground reference " + this.gameObject.name);
         }
+
+        if(ExplosionParticles == null)
+        {
+            Debug.LogAssertion("THe missile base object did not have an explosion particles object assigned");
+        }
+        particles = ExplosionParticles.GetComponentInChildren<ParticleSystem>();
+        if (particles == null )
+        {
+            Debug.LogAssertion("The assigned explosion particles did not have a particle effect");
+        }
+        
 	}
 	
 	// Update is called once per frame
@@ -32,12 +45,14 @@ public class MissileBaseObject : MonoBehaviour {
 
     public void ShotFromSky()
     {
+        Instantiate(ExplosionParticles, this.transform.position, ExplosionParticles.transform.rotation);
         Destroy(this.gameObject);
         PointsManager.AddScoreEvent(pointScore);
     }
 
     public void MadeItToGround()
     {
+        Instantiate(ExplosionParticles, this.transform.position, ExplosionParticles.transform.rotation);
         Destroy(this.gameObject);
         if (LivesManager.RemoveLifeEvent != null)
             LivesManager.RemoveLifeEvent();

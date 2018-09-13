@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1267736975718332}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: 0.34966543, y: 15.2, z: -44.5}
+  m_LocalPosition: {x: 0, y: 5.9, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,6 +117,8 @@ MonoBehaviour:
   bulletReference: {fileID: 4990564456499064, guid: 642d32a06e937fc46949090d424f085c,
     type: 2}
   groundReference: {fileID: 1226866382986502, guid: 0104e37910ca8cc48bf6becc4e7e92f5,
+    type: 2}
+  ExplosionParticles: {fileID: 1102298800447568, guid: 0bd62389510082b4f986b66297f6264a,
     type: 2}
   screenPaddingSides: 0
   screenPaddingTop: 0

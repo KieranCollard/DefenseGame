@@ -548,6 +548,10 @@ Prefab:
       propertyPath: m_Name
       value: MissileSpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1238466713059732, guid: f5e1f59ed45622341bd911ca4c2ad7e9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5e1f59ed45622341bd911ca4c2ad7e9, type: 2}
   m_IsPrefabAsset: 0
