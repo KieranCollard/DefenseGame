@@ -14,16 +14,17 @@ public class PointsDisplay : MonoBehaviour {
 
     private void OnEnable()
     {
+        myText = GetComponent<Text>();
+        if (myText == null)
+        {
+            Debug.LogAssertion("The Points display script must be attached to a UI text object");
+        }
         PointsManager.OnScoreAdded += UpdateScore;
         PointsManager.OnScoreSubtracted += UpdateScore;
     }
     // Use this for initialization
     void Start () {
-        myText = GetComponent<Text>();
-        if(myText == null)
-        {
-            Debug.LogAssertion("The Points display script must be attached to a UI text object");
-        }
+       
 	}
 
     private void OnDisable()

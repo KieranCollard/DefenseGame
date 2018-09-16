@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1558545790849120}
+  m_IsPrefabAsset: 1
+--- !u!1 &1558545790849120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4674310098264318}
+  - component: {fileID: 114119091115669430}
+  m_Layer: 0
+  m_Name: HighScoreObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4674310098264318
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558545790849120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 231.44998, y: 230.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114119091115669430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1558545790849120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83c9e941b5aa8349ad82a468b8d6976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: HighScore
+  nameCharacterLength: 3
+  maximumNames: 10
+  highScoreList:
+  - nameValue: aaa
+    scoreValue: 100
+  - nameValue: bbb
+    scoreValue: 97
+  - nameValue: ccc
+    scoreValue: 86
+  - nameValue: ddd
+    scoreValue: 77
+  - nameValue: eee
+    scoreValue: 70
+  - nameValue: eee
+    scoreValue: 64
+  - nameValue: fff
+    scoreValue: 60
+  - nameValue: ggg
+    scoreValue: 60
+  - nameValue: hhh
+    scoreValue: 55
+  - nameValue: iii
+    scoreValue: 50

@@ -16,9 +16,9 @@ public class PointsManager : MonoBehaviour {
     public delegate void RemoveScoreDelegate(int scoreValue);
     public static RemoveScoreDelegate RemoveScoreEvent;
 
-    private int currentScore = 0;
+    private static int currentScore = 0;
 
-    public int CurrentScore
+    public static int CurrentScore
     {
         get
         {
@@ -53,5 +53,7 @@ public class PointsManager : MonoBehaviour {
     {
         AddScoreEvent -= AddScore;
         RemoveScoreEvent -= SubtractScore;
+        //reset score on destruction
+        currentScore = 0;
     }
 }

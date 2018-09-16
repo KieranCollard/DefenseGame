@@ -18,6 +18,8 @@ public class LivesManager : MonoBehaviour {
     public delegate void RemoveLifeDelegate();
     public static RemoveLifeDelegate RemoveLifeEvent;
 
+    public delegate void GameOverDelegate();
+    public static GameOverDelegate GameOverEvent;
 
     public int startingLives = 3;
     private int currentLives;
@@ -40,9 +42,15 @@ public class LivesManager : MonoBehaviour {
 
         if(currentLives <= 0)
         {
-            ///TODO pass current score into next scene
-            ///possibly write to file?
-            SceneManager.LoadScene("PostGame");
+            if (GameOverEvent != null)
+            {
+                Time.timeScale = 0;
+                GameOverEvent();
+            }
+            else
+            {
+                Debug.LogAssertion("Nothing was subscribed to the game over event. The game cannot end");
+            }
         }
         if(OnLifeAdded != null)
             OnLifeSubtracted(currentLives);
@@ -54,6 +62,8 @@ public class LivesManager : MonoBehaviour {
         AddLifeEvent += AddLife;
         RemoveLifeEvent += SubtractLife;
 
+        //unpause if we were paused
+        Time.timeScale = 1;
         if(OnLifeAdded != null)
             OnLifeAdded(currentLives);
     }

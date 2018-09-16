@@ -15,17 +15,18 @@ public class LivesDisplay : MonoBehaviour {
 
     void OnEnable()
     {
+        myText = GetComponent<Text>();
+        if (myText == null)
+        {
+            Debug.LogAssertion("The Lives display script must be attached to a UI Text object");
+        }
         LivesManager.OnLifeAdded += UpdateLives;
         LivesManager.OnLifeSubtracted += UpdateLives;
 
     }
 
 	void Start () {
-        myText = GetComponent<Text>();
-        if(myText == null)
-        {
-            Debug.LogAssertion("The Lives display script must be attached to a UI Text object");
-        }
+
 
 	}
 	
