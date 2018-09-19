@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83c9e941b5aa8349ad82a468b8d6976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: HighScore
+  scoreKey: HighScore
   nameCharacterLength: 3
   maximumNames: 10
   highScoreList:
@@ -65,13 +65,13 @@ MonoBehaviour:
     scoreValue: 77
   - nameValue: eee
     scoreValue: 70
-  - nameValue: eee
-    scoreValue: 64
   - nameValue: fff
     scoreValue: 60
   - nameValue: ggg
-    scoreValue: 60
+    scoreValue: 57
   - nameValue: hhh
     scoreValue: 55
   - nameValue: iii
     scoreValue: 50
+  - nameValue: jjj
+    scoreValue: 40

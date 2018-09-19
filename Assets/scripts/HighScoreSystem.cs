@@ -4,45 +4,21 @@ using System;
 
 using UnityEngine;
 
-public class HighScoreSystem : MonoBehaviour{
-    public string fileName = "HighScore";
+public class HighScoreSystem : MonoBehaviour
+{
+    public string scoreKey = "HighScore";
     public int nameCharacterLength = 3;
     public int maximumNames = 10;
     public List<NameToScore> highScoreList = new List<NameToScore>();
     [System.Serializable]
     public class NameToScore : IComparable<NameToScore>
     {
-        private HighScoreSystem myParent;
         //public to expose to editor
         public string nameValue = "";
-        public float scoreValue =0;
-        public string Name
-        {
-            get
-            {
-                return nameValue;
-            }
-            set
-            {
-                if (Name.Length > myParent.nameCharacterLength)
-                {
-                    nameValue = Name.Substring(0, myParent.nameCharacterLength);
-                }
-                else
-                {
-                    Debug.Log(Name);
-                    nameValue = Name;
-                }
-            }
-        }
-        private NameToScore()
+        public float scoreValue = 0;
+        public NameToScore()
         {
 
-        }
-        public NameToScore(HighScoreSystem parent)
-        {
-            myParent = parent;
-            scoreValue = 0;
         }
 
 
@@ -55,37 +31,78 @@ public class HighScoreSystem : MonoBehaviour{
 
     public void Load()
     {
-        string jsonString = PlayerPrefs.GetString(fileName);
-        if(jsonString != "")
+        int count = 0;
+        string jsonString = PlayerPrefs.GetString(scoreKey + count.ToString(), "");
+        while (jsonString != "" && count < maximumNames)
         {
-            JsonUtility.FromJsonOverwrite(jsonString, highScoreList);
+            NameToScore data = new NameToScore();
+            JsonUtility.FromJsonOverwrite(jsonString, data);
+            
+            highScoreList[count].nameValue = data.nameValue;
+            highScoreList[count].scoreValue = data.scoreValue;
+
+            //can't add to the array, must override existing (editor exposed) variables
+            ++count;
+            jsonString = PlayerPrefs.GetString(scoreKey + count.ToString(), "");
         }
-        
+
     }
     public void Save()
     {
+        //should be save to delete here as we are about to save again
+        PlayerPrefs.DeleteAll();
         highScoreList.Sort();
-        string jsonValue = JsonUtility.ToJson(highScoreList);
-        PlayerPrefs.SetString(fileName, jsonValue);
+        int count = 0;
+        foreach (NameToScore data in highScoreList)
+        {
+            string jsonValue = JsonUtility.ToJson(data);
+            PlayerPrefs.SetString(scoreKey + count.ToString(), jsonValue);
+            ++count;
+        }
+
     }
     public void AddValue(string name, float score)
     {
         //at this point we assume the list is still sorted
         //and pop the back value if we detect we should be inserted
         //iterating backwards should let us early out if we can
-        for (int i =highScoreList.Count -1; i >=0; --i)
+        for (int i = 0; i < highScoreList.Count; ++i)
         {
-            if(score > highScoreList[i].scoreValue)
+            if (score > highScoreList[i].scoreValue)
             {
-                NameToScore item = new NameToScore(this);
-                item.Name = name;
-                item.scoreValue = score;
-                highScoreList.Insert(i,  item);
+                //save a copy of the exisitng data
+                NameToScore item = new NameToScore();
+                item.nameValue = highScoreList[i].nameValue;
+                item.scoreValue = highScoreList[i].scoreValue;
 
-                if(highScoreList.Count > maximumNames)
+                //ovewrite the exisitng etry
+                highScoreList[i].nameValue = name;
+                highScoreList[i].scoreValue = score;
+
+                Debug.Log("Value at index " + i.ToString() + " is now " + highScoreList[i].nameValue + " " + highScoreList[i].scoreValue.ToString());
+
+                Debug.Log("it was  " + item.nameValue + " " + item.scoreValue.ToString());
+                //propogae down list for follow on changes
+
+                for(int j =i +1; j < highScoreList.Count; ++j)
                 {
-                    highScoreList.RemoveAt(highScoreList.Count - 1);
+                    //cache the 'next item' in list
+                    NameToScore nextItem = new NameToScore();
+                    nextItem.nameValue = highScoreList[j].nameValue;
+                    nextItem.scoreValue = highScoreList[j].scoreValue;
+
+                    //overwrite data
+                    highScoreList[j].nameValue = item.nameValue;
+                    highScoreList[j].scoreValue = item.scoreValue;
+
+                    //update item
+                    item.nameValue = nextItem.nameValue;
+                    item.scoreValue = nextItem.scoreValue;
+
+                    Debug.Log("Value at previous index " + (j-1).ToString() + " is now " + highScoreList[j-1].nameValue + " " + highScoreList[j-1].scoreValue.ToString());
+                    Debug.Log("Value at index " + j.ToString() + " is now " + highScoreList[j].nameValue + " " + highScoreList[j].scoreValue.ToString());
                 }
+
                 break;
             }
         }
@@ -93,7 +110,6 @@ public class HighScoreSystem : MonoBehaviour{
 
     private void OnEnable()
     {
-        Debug.Log("called load");
         //This could be improved on to try and keep a static instance
         //or use dont destroy on load
         Load();

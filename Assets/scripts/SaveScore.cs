@@ -29,9 +29,8 @@ public class SaveScore : MonoBehaviour {
         }
 
         highScoreSystem = HighScoreSystem.GetComponentInChildren<HighScoreSystem>();
-        input = textInput.GetComponentInChildren<InputField>();
         loadPost = GameManager.GetComponentInChildren<LoadPostGame>();
-
+        input = textInput.GetComponent<InputField>();
         if(loadPost == null)
         {
             Debug.LogAssertion("The game manager did not have a load post game script");
