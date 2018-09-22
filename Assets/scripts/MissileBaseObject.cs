@@ -45,15 +45,14 @@ public class MissileBaseObject : MonoBehaviour {
 
     public void ShotFromSky()
     {
-        Instantiate(ExplosionParticles, this.transform.position, ExplosionParticles.transform.rotation);
-        Destroy(this.gameObject);
-        PointsManager.AddScoreEvent(pointScore);
+        StartCoroutine(DestroyBehaviour()); 
+        if(PointsManager.AddScoreEvent != null)
+            PointsManager.AddScoreEvent(pointScore);
     }
 
     public void MadeItToGround()
     {
-        Instantiate(ExplosionParticles, this.transform.position, ExplosionParticles.transform.rotation);
-        Destroy(this.gameObject);
+        StartCoroutine(DestroyBehaviour());   
         if (LivesManager.RemoveLifeEvent != null)
             LivesManager.RemoveLifeEvent();
     }
@@ -70,5 +69,26 @@ public class MissileBaseObject : MonoBehaviour {
         {
             MadeItToGround();
         }
+    }
+
+    IEnumerator DestroyBehaviour()
+    {
+        AudioSource source = GetComponent<AudioSource>();
+        if (source == null)
+        {
+            Debug.LogAssertion("The missile object " + this.gameObject + "did not have an audio source to play sound effects");
+
+        }
+        else
+        {
+            source.PlayOneShot(source.clip);
+        }
+        Instantiate(ExplosionParticles, this.transform.position, ExplosionParticles.transform.rotation);
+        this.GetComponent<Renderer>().enabled = false;
+        this.GetComponent<Collider>().enabled = false;
+        this.GetComponent<ParticleSystem>().Stop();
+
+        yield return new WaitForSeconds(source.clip.length);
+        Destroy(this.gameObject);
     }
 }
