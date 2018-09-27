@@ -86,7 +86,9 @@ public class MissileBaseObject : MonoBehaviour {
         Instantiate(ExplosionParticles, this.transform.position, ExplosionParticles.transform.rotation);
         this.GetComponent<Renderer>().enabled = false;
         this.GetComponent<Collider>().enabled = false;
-        this.GetComponent<ParticleSystem>().Stop();
+        ParticleSystem particles = this.GetComponent<ParticleSystem>();
+        if (particles != null)
+            particles.Stop();
 
         yield return new WaitForSeconds(source.clip.length);
         Destroy(this.gameObject);

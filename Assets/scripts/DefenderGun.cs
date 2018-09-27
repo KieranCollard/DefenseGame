@@ -41,15 +41,16 @@ public class DefenderGun : MonoBehaviour {
         }
 
         this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, angle);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            //set the bullet as our child so that it can reference our rotation via parent command
+            GameObject test = GameObject.Instantiate<GameObject>(bullet, this.transform.position, this.transform.rotation, this.transform);
+            if (audioComponent != null)
+            {
+                audioComponent.PlayOneShot(audioComponent.clip);
+            }
+        }
 	}
 
-    private void OnMouseUp()
-    {
-        //set the bullet as our child so that it can reference our rotation via parent command
-        GameObject.Instantiate<GameObject>(bullet, this.transform.position, this.transform.rotation, this.transform);
-        if (audioComponent != null)
-        {
-            audioComponent.PlayOneShot(audioComponent.clip);
-        }
-    }
 }
